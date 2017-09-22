@@ -27,7 +27,7 @@ import javax.validation.constraints.*;
 /**
  * Receipt
  */
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaJerseyServerCodegen", date = "2017-09-21T23:23:26.788-06:00")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaJerseyServerCodegen", date = "2017-09-22T00:28:15.760-06:00")
 public class Receipt   {
   @JsonProperty("id")
   private Long id = null;

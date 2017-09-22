@@ -57,7 +57,7 @@
 	</servlet>
 	<filter>
 		<filter-name>ApiOriginFilter</filter-name>
-		<filter-class>com.cargo.util.ApiOriginFilter</filter-class>
+		<filter-class>com.cargo.resource.ApiOriginFilter</filter-class>
 	</filter>
 	<servlet>
 		<servlet-name>Bootstrap</servlet-name>

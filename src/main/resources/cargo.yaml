@@ -29,7 +29,6 @@ paths:
       description: This can only be done by the logged in user.
       operationId: createUser
       produces:
-        - application/xml
         - application/json
       parameters:
         - in: body
@@ -41,7 +40,7 @@ paths:
       responses:
         default:
           description: successful operation
-  /user/display:
+  /user/displayAll:
     get:
       tags:
         - user
@@ -49,13 +48,14 @@ paths:
       description: ''
       operationId: getAllUsers
       produces:
-        - application/xml
         - application/json
       responses:
         '200':
           description: successful operation
           schema:
-            type: string
+            type: array
+            items:
+              $ref: '#/definitions/User'
           headers:
             X-Rate-Limit:
               type: integer
@@ -75,7 +75,6 @@ paths:
       description: ''
       operationId: loginUser
       produces:
-        - application/xml
         - application/json
       parameters:
         - name: username
@@ -92,7 +91,7 @@ paths:
         '200':
           description: successful operation
           schema:
-            ref: '#/definitions/User'
+            $ref: '#/definitions/UserResponse'
           headers:
             X-Rate-Limit:
               type: integer
@@ -112,12 +111,97 @@ paths:
       description: ''
       operationId: logoutUser
       produces:
-        - application/xml
         - application/json
       parameters: []
       responses:
         default:
           description: successful operation
+  /customer:
+    post:
+      tags:
+        - customer
+      summary: Create Customer
+      description: This can only be done by the logged in user.
+      operationId: createCustomer
+      produces:
+        - application/json
+      parameters:
+        - in: body
+          name: body
+          description: Created customer object
+          required: true
+          schema:
+            $ref: '#/definitions/SuccessResponse'
+      responses:
+        default:
+          description: successful operation
+  /customer/{id}:
+    post:
+      tags:
+        - customer
+      summary: Create Customer
+      description: This can only be done by the logged in user.
+      operationId: getCustomerById
+      produces:
+        - application/json
+      parameters:
+        - name: id
+          in: path
+          description: ID of customer id 
+          required: true
+          type: integer
+          format: int64
+      responses:
+        default:
+          description: successful operation   
+        "200":
+          description: successful operation
+          schema:
+            $ref: "#/definitions/Customer"  
+    delete:
+      description: deletes a single customer based on the ID supplied
+      operationId: deleteCustomerById
+      parameters:
+        - name: id
+          in: path
+          description: ID of customer to delete
+          required: true
+          type: integer
+          format: int64
+      responses:
+        "204":
+          description: customer deleted
+        "200":
+          description: successful operation
+          schema:
+            $ref: "#/definitions/SuccessResponse"       
+  /customer/displayAll:
+    get:
+      tags:
+        - customer
+      summary: get all customer in system
+      description: ''
+      operationId: getAllCustomers
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Customer'
+          headers:
+            X-Rate-Limit:
+              type: integer
+              format: int32
+              description: calls per hour allowed by the user
+            X-Expires-After:
+              type: string
+              format: date-time
+              description: date in UTC when token expires
+        '400':
+          description: Invalid username/password supplied        
 definitions:
   Customer:
     type: object
@@ -197,6 +281,30 @@ definitions:
       roleId:
         type: integer
         format: int64
+  UserResponse:
+    type: object
+    properties:
+      baseResponse:
+        $ref: '#/definitions/ApiResponseMessage'
+      user:
+        $ref: '#/definitions/User'
+  SuccessResponse:
+    type : object
+    properties:
+      baseResponse:
+        $ref: '#/definitions/ApiResponseMessage'
+      customer:
+        $ref: '#/definitions/Customer'
+  ApiResponseMessage:
+    type : object
+    properties:
+      code:
+        type: integer
+        format: int64
+      type:
+        type : string
+      message:
+        type: string
   Role:
     type: object
     properties:

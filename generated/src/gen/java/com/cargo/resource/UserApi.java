@@ -8,6 +8,7 @@ import io.swagger.annotations.ApiParam;
 import io.swagger.jaxrs.*;
 
 import com.cargo.model.User;
+import com.cargo.model.UserResponse;
 
 import java.util.List;
 import com.cargo.resource.NotFoundException;
@@ -27,14 +28,14 @@ import javax.validation.constraints.*;
 
 
 @io.swagger.annotations.Api(description = "the user API")
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaJerseyServerCodegen", date = "2017-09-21T23:23:26.788-06:00")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaJerseyServerCodegen", date = "2017-09-22T00:28:15.760-06:00")
 public class UserApi  {
    private final UserApiService delegate = UserApiServiceFactory.getUserApi();
 
     @POST
     
     
-    @Produces({ "application/xml", "application/json" })
+    @Produces({ "application/json" })
     @io.swagger.annotations.ApiOperation(value = "Create user", notes = "This can only be done by the logged in user.", response = void.class, tags={ "user", })
     @io.swagger.annotations.ApiResponses(value = { 
         @io.swagger.annotations.ApiResponse(code = 200, message = "successful operation", response = void.class) })
@@ -44,14 +45,14 @@ public class UserApi  {
         return delegate.createUser(body,securityContext);
     }
     @GET
-    @Path("/display")
+    @Path("/displayAll")
     
-    @Produces({ "application/xml", "application/json" })
-    @io.swagger.annotations.ApiOperation(value = "Logs user into the system", notes = "", response = String.class, tags={ "user", })
+    @Produces({ "application/json" })
+    @io.swagger.annotations.ApiOperation(value = "Logs user into the system", notes = "", response = User.class, responseContainer = "List", tags={ "user", })
     @io.swagger.annotations.ApiResponses(value = { 
-        @io.swagger.annotations.ApiResponse(code = 200, message = "successful operation", response = String.class),
+        @io.swagger.annotations.ApiResponse(code = 200, message = "successful operation", response = User.class, responseContainer = "List"),
         
-        @io.swagger.annotations.ApiResponse(code = 400, message = "Invalid username/password supplied", response = String.class) })
+        @io.swagger.annotations.ApiResponse(code = 400, message = "Invalid username/password supplied", response = User.class, responseContainer = "List") })
     public Response getAllUsers(@Context SecurityContext securityContext)
     throws NotFoundException {
         return delegate.getAllUsers(securityContext);
@@ -59,12 +60,12 @@ public class UserApi  {
     @GET
     @Path("/login")
     
-    @Produces({ "application/xml", "application/json" })
-    @io.swagger.annotations.ApiOperation(value = "Logs user into the system", notes = "", response = void.class, tags={ "user", })
+    @Produces({ "application/json" })
+    @io.swagger.annotations.ApiOperation(value = "Logs user into the system", notes = "", response = UserResponse.class, tags={ "user", })
     @io.swagger.annotations.ApiResponses(value = { 
-        @io.swagger.annotations.ApiResponse(code = 200, message = "successful operation", response = void.class),
+        @io.swagger.annotations.ApiResponse(code = 200, message = "successful operation", response = UserResponse.class),
         
-        @io.swagger.annotations.ApiResponse(code = 400, message = "Invalid username/password supplied", response = void.class) })
+        @io.swagger.annotations.ApiResponse(code = 400, message = "Invalid username/password supplied", response = UserResponse.class) })
     public Response loginUser(@ApiParam(value = "The user name for login",required=true) @QueryParam("username") String username
 ,@ApiParam(value = "The password for login in clear text",required=true) @QueryParam("password") String password
 ,@Context SecurityContext securityContext)
@@ -74,7 +75,7 @@ public class UserApi  {
     @GET
     @Path("/logout")
     
-    @Produces({ "application/xml", "application/json" })
+    @Produces({ "application/json" })
     @io.swagger.annotations.ApiOperation(value = "Logs out current logged in user session", notes = "", response = void.class, tags={ "user", })
     @io.swagger.annotations.ApiResponses(value = { 
         @io.swagger.annotations.ApiResponse(code = 200, message = "successful operation", response = void.class) })
