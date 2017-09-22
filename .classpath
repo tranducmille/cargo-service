@@ -8,8 +8,7 @@
 	</classpathentry>
 	<classpathentry kind="src" path="generated/src/main/java"/>
 	<classpathentry kind="src" path="generated/src/gen/java"/>
-	<classpathentry kind="src" path="src/main/resources"/>
-	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/J2SE-1.5">
+	<classpathentry excluding="**" kind="src" output="target/classes" path="src/main/resources">
 		<attributes>
 			<attribute name="maven.pomderived" value="true"/>
 		</attributes>
@@ -20,24 +19,9 @@
 			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="C:/Users/dtran/.m2/repository/com/fasterxml/jackson/jaxrs/jackson-jaxrs-json-provider/2.4.5/jackson-jaxrs-json-provider-2.4.5.jar">
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.8">
 		<attributes>
-			<attribute name="maven.pomderived" value="true"/>
-			<attribute name="org.eclipse.jst.component.archivename" value="jackson-jaxrs-json-provider-2.4.5.jar"/>
-			<attribute name="maven.groupId" value="com.fasterxml.jackson.jaxrs"/>
-			<attribute name="maven.artifactId" value="jackson-jaxrs-json-provider"/>
-			<attribute name="maven.version" value="2.4.5"/>
-			<attribute name="maven.scope" value="compile"/>
-		</attributes>
-	</classpathentry>
-	<classpathentry kind="lib" path="C:/Users/dtran/.m2/repository/com/fasterxml/jackson/datatype/jackson-datatype-joda/2.4.5/jackson-datatype-joda-2.4.5.jar">
-		<attributes>
-			<attribute name="maven.pomderived" value="true"/>
-			<attribute name="org.eclipse.jst.component.archivename" value="jackson-datatype-joda-2.4.5.jar"/>
-			<attribute name="maven.groupId" value="com.fasterxml.jackson.datatype"/>
-			<attribute name="maven.artifactId" value="jackson-datatype-joda"/>
-			<attribute name="maven.version" value="2.4.5"/>
-			<attribute name="maven.scope" value="compile"/>
+			<attribute name="owner.project.facets" value="java"/>
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="output" path="target/classes"/>

@@ -1,4 +1,4 @@
-package com.cargo.base;
+package com.cargo.db.base;
 
 import java.io.Serializable;
 import java.util.Date;

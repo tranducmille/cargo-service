@@ -1,4 +1,4 @@
-package com.cargo.entity;
+package com.cargo.db.entity;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -6,7 +6,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-import com.cargo.base.BaseDomain;
+import com.cargo.db.base.BaseDomain;
 
 /**
  * @author created by dtran

@@ -1,4 +1,4 @@
-package com.cargo.base;
+package com.cargo.db.base;
 
 import java.lang.reflect.ParameterizedType;
 import java.util.List;
@@ -60,9 +60,10 @@ public abstract class BaseDAO<T extends BaseDomain, ID extends Number> {
 	/**
 	 * @param transientInstance
 	 * @return ID
+	 * @throws Exception 
 	 */
 	@Transactional
-	public ID save(T transientInstance) {
+	public ID save(T transientInstance) throws Exception {
 		log.debug("saving instance " + transientInstance.getClass().getName());
 		Session session = sessionFactory.getCurrentSession();
 		Transaction transaction = session.getTransaction();
@@ -82,9 +83,10 @@ public abstract class BaseDAO<T extends BaseDomain, ID extends Number> {
 	/**
 	 * @param transientInstance
 	 * @return instance
+	 * @throws Exception 
 	 */
 	@Transactional
-	public T saveOrUpdate(T transientInstance) {
+	public T saveOrUpdate(T transientInstance) throws Exception {
 		log.debug("saving instance " + transientInstance.getClass().getName());
 		Session session = sessionFactory.getCurrentSession();
 		Transaction transaction = session.getTransaction();
@@ -104,9 +106,10 @@ public abstract class BaseDAO<T extends BaseDomain, ID extends Number> {
 
 	/**
 	 * @param transientInstance
+	 * @throws Exception 
 	 */
 	@Transactional
-	public void update(T transientInstance) {
+	public void update(T transientInstance) throws Exception {
 		log.debug("updating instance " + transientInstance.getClass().getName());
 		Session session = sessionFactory.getCurrentSession();
 		Transaction transaction = session.getTransaction();
@@ -123,9 +126,10 @@ public abstract class BaseDAO<T extends BaseDomain, ID extends Number> {
 	}
 	/**
 	 * @param persistentInstance
+	 * @throws Exception 
 	 */
 	@Transactional
-	public void delete(T persistentInstance) {
+	public void delete(T persistentInstance) throws Exception {
 		log.debug("deleting instance " + persistentInstance.getClass().getName());
 		Session session = sessionFactory.getCurrentSession();
 		Transaction transaction = session.getTransaction();
@@ -163,9 +167,10 @@ public abstract class BaseDAO<T extends BaseDomain, ID extends Number> {
 	/**
 	 * @param id
 	 * @return instance
+	 * @throws Exception 
 	 */
 	@Transactional
-	public T findById(ID id) {
+	public T findById(ID id) throws Exception {
 		Session session = sessionFactory.getCurrentSession();
 		Transaction transaction = session.getTransaction();
 		transaction.begin();
@@ -188,16 +193,17 @@ public abstract class BaseDAO<T extends BaseDomain, ID extends Number> {
 	}
 	
 	@Transactional
-	public final List<T> findByCriteria(String fieldName, Object fieldValue){
+	public final List<T> findByCriteria(String fieldName, Object fieldValue) throws Exception{
 		return this.findByCriteria(Restrictions.eq(fieldName, fieldValue));
 	}
 
 	/**
 	 * @param exp
 	 * @return list of instance
+	 * @throws Exception 
 	 */
 	@Transactional
-	public List<T> findByCriteria(Criterion exp) {
+	public List<T> findByCriteria(Criterion exp) throws Exception {
 		Session session = sessionFactory.getCurrentSession();
 		Transaction transaction = session.getTransaction();
 		transaction.begin();
@@ -219,9 +225,10 @@ public abstract class BaseDAO<T extends BaseDomain, ID extends Number> {
 	
 	/**
 	 * @return list of instance
+	 * @throws Exception 
 	 */
 	@Transactional
-	public List<T> findAll() {
+	public List<T> findAll() throws Exception {
 		Session session = sessionFactory.getCurrentSession();
 		Transaction transaction = session.getTransaction();
 		transaction.begin();
